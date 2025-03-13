@@ -9,7 +9,6 @@ public class AutomatizationTest {
 
   public void automatizationTest() {
 
-    final GetInputInfo getInputInfo = new GetInputInfo();
 
     final  String user = GetInputInfo.getInputInfo("Please enter the user id for mercadolibre: ");
     final String password = GetInputInfo.getInputInfo("Please Enter the password for mercadolibre");
@@ -19,19 +18,18 @@ public class AutomatizationTest {
     final String prefix = "";
     final String params = "/";
     final WebDriver driver = new ChromeDriver();
-    final ScreenshotClass screenshot = new ScreenshotClass();
 
     driver.get(protocol + prefix + "mercadolibre.com.co" + params);
-    screenshot.createScreenshot(driver, "step1", "");
+    ScreenshotClass.createScreenshot(driver, "step1", "");
 
-    testlogin(driver, screenshot, user, password);
+    testlogin(driver, user, password);
 
-    testAddToCar(driver, screenshot);
+    testAddToCar(driver);
 
     driver.quit();
   }
 
-    public void testlogin(WebDriver driver, ScreenshotClass screenshot, String user, String password) {
+    public void testlogin(WebDriver driver, String user, String password) {
       try {
         final String path = "login";
 
@@ -43,7 +41,7 @@ public class AutomatizationTest {
         Thread.sleep(3000);
 
         // Take a screenshot of the login page
-        screenshot.createScreenshot(driver, "step2", path);
+        ScreenshotClass.createScreenshot(driver, "step2", path);
 
         // Find the input field for the user
         final WebElement input = driver.findElement(By.xpath("/html/body/main/div/div[1]/div/div[3]/div/div[1]/form/div[1]/div/div/div[1]/input"));
@@ -53,7 +51,7 @@ public class AutomatizationTest {
         input.sendKeys(user);
 
         // take Screenshot of the user input
-        screenshot.createScreenshot(driver, "step3", path);
+        ScreenshotClass.createScreenshot(driver, "step3", path);
 
         // Find the input field for the user
         final WebElement buttonUser = driver.findElement(By.xpath("/html/body/main/div/div[1]/div/div[3]/div/div[1]/form/div[2]/button/span"));
@@ -62,7 +60,7 @@ public class AutomatizationTest {
         //wait for 3 seconds
         Thread.sleep(3000);
 
-        screenshot.createScreenshot(driver, "step4", path);
+        ScreenshotClass.createScreenshot(driver, "step4", path);
 
        // Find the input field for the password
        final WebElement inputPass = driver.findElement(By.xpath("/html/body/main/div/div[2]/div/div[4]/div/div[1]/form/div[1]/div/div/div[1]/input[1]"));
@@ -71,7 +69,7 @@ public class AutomatizationTest {
        //inject the password on the input field
         inputPass.sendKeys(password);
 
-        screenshot.createScreenshot(driver, "step5", path);
+        ScreenshotClass.createScreenshot(driver, "step5", path);
 
         final WebElement buttonPass = driver.findElement(By.xpath("/html/body/main/div/div[2]/div/div[4]/div/div[1]/form/div[2]/button[1]"));
         buttonPass.click();
@@ -85,12 +83,12 @@ public class AutomatizationTest {
       }
     }
 
-    public void testAddToCar(WebDriver driver, ScreenshotClass screenshot){
+    public void testAddToCar(WebDriver driver){
       try {
         final String path = "addToCar";
 
         // take Screenshot of home page logged
-        screenshot.createScreenshot(driver, "step6", path);
+        ScreenshotClass.createScreenshot(driver, "step6", path);
 
         //wait for 2 seconds
         Thread.sleep(3000);
@@ -101,7 +99,7 @@ public class AutomatizationTest {
         //wait for 2 seconds
         Thread.sleep(3000);
 
-        screenshot.createScreenshot(driver, "step7", path);
+        ScreenshotClass.createScreenshot(driver, "step7", path);
 
         final WebElement product = driver.findElement(By.xpath("/html/body/main/div/section/div[2]/div/div/div[1]/div[2]/a"));
         product.click();
@@ -109,7 +107,7 @@ public class AutomatizationTest {
         //wait for 2 seconds
         Thread.sleep(3000);
 
-        screenshot.createScreenshot(driver, "step8", path);
+        ScreenshotClass.createScreenshot(driver, "step8", path);
 
         final WebElement buttonAddToCar = driver.findElement(By.xpath("/html/body/main/div[2]/div[4]/div[2]/div[2]/div/div[1]/form/div[5]/div/button[2]"));
         buttonAddToCar.click();
@@ -117,15 +115,15 @@ public class AutomatizationTest {
         //wait for 2 seconds
         Thread.sleep(3000);
 
-        screenshot.createScreenshot(driver, "step9", path);
+        ScreenshotClass.createScreenshot(driver, "step9", path);
 
         final WebElement buttonDeleteToCar = driver.findElement(By.xpath("/html/body/main/div/div/div/div[1]/section[1]/article/div/section/article/div/div/div/button[1]"));
         buttonDeleteToCar.click();
 
         //wait for 4 seconds
-        Thread.sleep(4000);
+        Thread.sleep(6000);
 
-        screenshot.createScreenshot(driver, "step11", path);
+        ScreenshotClass.createScreenshot(driver, "step11", path);
 
         //wait for 2 seconds
         Thread.sleep(2000);
